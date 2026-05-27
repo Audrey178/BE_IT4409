@@ -1,3 +1,4 @@
+require("dotenv").config({ quite: true });
 const express = require("express");
 const { default: mongoose } = require("mongoose");
 const cors = require("cors");
@@ -163,10 +164,8 @@ app.delete("/api/users/:id", async (req, res) => {
   }
 });
 
-const mongoUri =
-  "mongodb+srv://20225416:20225416@cluster0.eff5c6y.mongodb.net/?appName=Cluster0";
 mongoose
-  .connect(mongoUri)
+  .connect(process.env.MONGO_URI)
   .then(() => {
     console.log("Connected to MongoDB");
     app.listen(port, () => {
