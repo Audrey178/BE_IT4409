@@ -37,6 +37,12 @@ const User = mongoose.model("User", Userschema);
 
 const isValidId = (id) => mongoose.Types.ObjectId.isValid(id);
 
+app.get("/", async (req, res) => {
+  return res.status(200).json({
+    message: "Server running",
+  });
+});
+
 app.get("/api/users", async (req, res) => {
   try {
     const { page = 1, limit = 5, search = "" } = req.query;
